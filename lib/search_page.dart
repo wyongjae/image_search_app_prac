@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_search_app_prac/photo_data.dart';
+import 'package:image_search_app_prac/photo_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -82,15 +83,7 @@ class _SearchPageState extends State<SearchPage> {
                           mainAxisSpacing: 16,
                         ),
                         itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(urls[index]),
-                              ),
-                            ),
-                          );
+                          return PhotoWidget(url: urls[index]);
                         }),
                   )
           ],
