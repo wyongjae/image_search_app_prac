@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<String> urls = [];
+  List<Photo> photos = [];
 
   bool isLoading = false;
 
@@ -21,13 +21,13 @@ class _SearchPageState extends State<SearchPage> {
     return await rootBundle.loadString('assets/photo.json');
   }
 
-  Future<List<String>> loadPhoto() async {
+  Future<List<Photo>> loadPhoto() async {
     String jsonString = await loadAStudentAsset();
     Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
 
     PhotoData photoData = PhotoData.fromJson(jsonResponse);
 
-    return photoData.hits.map((e) => e.previewURL).toList();
+    return photoData.hits;
   }
 
   Future<void> delay() async {
@@ -37,7 +37,7 @@ class _SearchPageState extends State<SearchPage> {
 
     await Future.delayed(const Duration(seconds: 3));
 
-    urls = await loadPhoto();
+    photos = await loadPhoto();
 
     setState(() {
       isLoading = false;
@@ -75,7 +75,7 @@ class _SearchPageState extends State<SearchPage> {
                 : Expanded(
                     child: GridView.builder(
                         padding: const EdgeInsets.only(top: 10),
-                        itemCount: urls.length,
+                        itemCount: photos.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -83,7 +83,13 @@ class _SearchPageState extends State<SearchPage> {
                           mainAxisSpacing: 16,
                         ),
                         itemBuilder: (context, index) {
-                          return PhotoWidget(url: urls[index]);
+                          return GestureDetector(
+                            onTap: () {
+                              print(photos[index].likes);
+                            },
+                              child: PhotoWidget(
+                            url: photos[index].previewURL,
+                          ));
                         }),
                   )
           ],

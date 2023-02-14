@@ -7,7 +7,7 @@ class JsonData {
     return await rootBundle.loadString('assets/photo.json');
   }
 
-  Future<List<Hits>> loadPhoto() async {
+  Future<List<Photo>> loadPhoto() async {
     String jsonString = await loadAStudentAsset();
     Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
 
