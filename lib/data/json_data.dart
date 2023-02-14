@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:image_search_app_prac/photo_data.dart';
+import 'package:image_search_app_prac/data/photo_data.dart';
 
 class JsonData {
   Future<String> loadAStudentAsset() async {
