@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_search_app_prac/data/json_data.dart';
 import 'package:image_search_app_prac/data/photo_data.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
@@ -13,22 +14,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final jsonData = JsonData();
   List<Photo> photos = [];
-
   bool isLoading = false;
-
-  Future<String> loadAStudentAsset() async {
-    return await rootBundle.loadString('assets/photo.json');
-  }
-
-  Future<List<Photo>> loadPhoto() async {
-    String jsonString = await loadAStudentAsset();
-    Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
-
-    PhotoData photoData = PhotoData.fromJson(jsonResponse);
-
-    return photoData.hits;
-  }
 
   Future<void> delay() async {
     setState(() {
@@ -37,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
 
     await Future.delayed(const Duration(seconds: 3));
 
-    photos = await loadPhoto();
+    photos = await jsonData.loadPhoto();
 
     setState(() {
       isLoading = false;
