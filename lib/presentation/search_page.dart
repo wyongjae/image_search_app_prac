@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_search_app_prac/data/json_data.dart';
-import 'package:image_search_app_prac/data/photo_data.dart';
+import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
+import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -14,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final jsonData = JsonData();
+  final jsonData = PhotoJsonData();
   List<Photo> photos = [];
   bool isLoading = false;
 
@@ -30,7 +27,7 @@ class _SearchPageState extends State<SearchPage> {
     setState(() {
       isLoading = false;
     });
-  } // 3초간 로딩 화면 표시
+  } // 3초간 로딩 화면 표시 후 데이터 호출
 
   @override
   Widget build(BuildContext context) {
