@@ -11,9 +11,11 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final jsonData = PhotoJsonData();
-  List<Photo> photos = [];
   bool isLoading = false;
+
+  final photoJsonData = PhotoJsonData();
+
+  List<Photo> photos = [];
 
   Future<void> delay() async {
     setState(() {
@@ -22,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
 
     await Future.delayed(const Duration(seconds: 3));
 
-    photos = await jsonData.loadPhoto();
+    photos = await photoJsonData.loadPhoto();
 
     setState(() {
       isLoading = false;

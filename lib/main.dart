@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/presentation/search_page.dart';
+import 'package:image_search_app_prac/presentation/thumbnail_search_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SearchPage(),
+      home: const ThumbnailSearchPage(),
     );
   }
 }

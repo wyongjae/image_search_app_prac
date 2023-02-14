@@ -12,7 +12,6 @@ class PhotoJsonData {
     Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
 
     PhotoData photoData = PhotoData.fromJson(jsonResponse);
-
     return photoData.hits;
   }
 }

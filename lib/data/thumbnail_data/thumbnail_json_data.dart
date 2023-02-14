@@ -8,12 +8,11 @@ class ThumbnailJsonData {
     return await rootBundle.loadString('assets/thumbnail.json');
   }
 
-  Future<List<Thumbnail>> loadPhoto() async {
+  Future<List<Thumbnail>> loadThumbnail() async {
     String jsonString = await loadThumbnailAsset();
     final jsonResponse = jsonDecode(jsonString);
 
     ThumbnailList thumbnailList = ThumbnailList.fromJson(jsonResponse);
-
     return thumbnailList.thumbnails;
   }
 }
