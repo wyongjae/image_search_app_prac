@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_data.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
+import 'package:image_search_app_prac/presentation/thumbnail_page/thunbnail_detail_screen.dart';
 
 class ThumbnailSearchPage extends StatefulWidget {
   const ThumbnailSearchPage({Key? key}) : super(key: key);
@@ -60,25 +61,33 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
             isLoading
                 ? const CircularProgressIndicator()
                 : Expanded(
-              child: GridView.builder(
-                  padding: const EdgeInsets.only(top: 10),
-                  itemCount: thumbnails.length,
-                  gridDelegate:
-                  const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                        onTap: () {
-                          print(thumbnails[index].url);
-                        },
-                        child: PhotoWidget(
-                          url: thumbnails[index].thumbnailUrl,
-                        ));
-                  }),
-            )
+                    child: GridView.builder(
+                        padding: const EdgeInsets.only(top: 10),
+                        itemCount: thumbnails.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                        ),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ThumbnailDetailScreen()),
+                                );
+                              },
+                              child: Hero(
+                                tag: 'Hero image',
+                                child: PhotoWidget(
+                                  url: thumbnails[index].thumbnailUrl,
+                                ),
+                              ));
+                        }),
+                  )
           ],
         ),
       ),
