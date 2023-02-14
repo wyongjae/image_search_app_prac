@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:image_search_app_prac/photo_data.dart';
 
 class JsonData {
-  Future<String> _loadAStudentAsset() async {
+  Future<String> loadAStudentAsset() async {
     return await rootBundle.loadString('assets/photo.json');
   }
 
-  Future<Iterable> loadPhoto() async {
-    String jsonString = await _loadAStudentAsset();
+  Future<List<Hits>> loadPhoto() async {
+    String jsonString = await loadAStudentAsset();
     Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
 
     PhotoData photoData = PhotoData.fromJson(jsonResponse);
