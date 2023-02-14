@@ -11,11 +11,19 @@ class ThumbnailDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        child: Center(
-          child: Hero(
-            tag: thumbnails.url,
-            child: PhotoWidget(url: thumbnails.url)
-          ),
+        child: Column(
+          children: [
+            Expanded(
+              child: Hero(
+                  tag: thumbnails.url, child: PhotoWidget(url: thumbnails.url)),
+            ),
+            Text(
+              thumbnails.title,
+              style: const TextStyle(
+                fontSize: 30,
+              ),
+            ),
+          ],
         ),
         onTap: () {
           Navigator.pop(context);
