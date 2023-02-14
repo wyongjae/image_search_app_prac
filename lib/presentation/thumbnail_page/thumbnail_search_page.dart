@@ -71,19 +71,22 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
                           mainAxisSpacing: 16,
                         ),
                         itemBuilder: (context, index) {
+                          final thumbnail = thumbnails[index];
                           return GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ThumbnailDetailScreen()),
+                                    builder: (context) => ThumbnailDetailScreen(
+                                      thumbnails: thumbnail,
+                                    ),
+                                  ),
                                 );
                               },
                               child: Hero(
-                                tag: 'Hero image',
+                                tag: thumbnail.id,
                                 child: PhotoWidget(
-                                  url: thumbnails[index].thumbnailUrl,
+                                  url: thumbnail.thumbnailUrl,
                                 ),
                               ));
                         }),

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_data.dart';
+import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
 class ThumbnailDetailScreen extends StatelessWidget {
-  const ThumbnailDetailScreen({super.key});
+  final Thumbnail thumbnails;
+
+  const ThumbnailDetailScreen({super.key, required this.thumbnails});
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +13,8 @@ class ThumbnailDetailScreen extends StatelessWidget {
       body: GestureDetector(
         child: Center(
           child: Hero(
-            tag: 'Hero image',
-            child: Image.network(
-              'https://picsum.photos/250?image=9',
-            ),
+            tag: thumbnails.url,
+            child: PhotoWidget(url: thumbnails.url)
           ),
         ),
         onTap: () {
