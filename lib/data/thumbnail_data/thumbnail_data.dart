@@ -11,7 +11,7 @@ class Thumbnail {
     required this.thumbnailUrl,
   });
 
-  factory Thumbnail.fromJson(Map<String, dynamic> json){
+  factory Thumbnail.fromJson(Map<String, dynamic> json) {
     return Thumbnail(
       id: json['id'].toString(),
       title: json['title'],
@@ -21,20 +21,17 @@ class Thumbnail {
   }
 }
 
-class ThumbnailList {
-  final List<Thumbnail> thumbnails;
-
-  ThumbnailList({
-    required this.thumbnails,
-  });
-
-  factory ThumbnailList.fromJson(List<dynamic> parsedJson) {
-
-    List<Thumbnail> thumbnails = [];
-    thumbnails = parsedJson.map((e)=>Thumbnail.fromJson(e)).toList();
-
-    return ThumbnailList(
-        thumbnails: thumbnails
-    );
-  }
-}
+// class ThumbnailList {
+//   final List<Thumbnail> thumbnails;
+//
+//   ThumbnailList({
+//     required this.thumbnails,
+//   });
+//
+//   factory ThumbnailList.fromJson(List<dynamic> parsedJson) {
+//     List<Thumbnail> datas = [];
+//     datas = parsedJson.map((e) => Thumbnail.fromJson(e)).toList();
+//
+//     return ThumbnailList(thumbnails: datas);
+//   }
+// }

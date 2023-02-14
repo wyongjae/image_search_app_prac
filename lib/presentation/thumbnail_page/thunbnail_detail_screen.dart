@@ -9,7 +9,7 @@ class ThumbnailDetailScreen extends StatelessWidget {
       body: GestureDetector(
         child: Center(
           child: Hero(
-            tag: 'imageHero',
+            tag: 'Hero image',
             child: Image.network(
               'https://picsum.photos/250?image=9',
             ),

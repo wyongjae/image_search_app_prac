@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_data.dart';
 
@@ -10,9 +9,8 @@ class ThumbnailJsonData {
 
   Future<List<Thumbnail>> loadThumbnail() async {
     String jsonString = await loadThumbnailAsset();
-    final jsonResponse = jsonDecode(jsonString);
+    List<dynamic> jsonResponse = jsonDecode(jsonString);
 
-    ThumbnailList thumbnailList = ThumbnailList.fromJson(jsonResponse);
-    return thumbnailList.thumbnails;
+    return jsonResponse.map((e) => Thumbnail.fromJson(e)).toList();
   }
 }
