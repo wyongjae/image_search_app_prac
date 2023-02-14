@@ -15,7 +15,7 @@ class ThumbnailDetailScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Hero(
-                  tag: thumbnails.id, child: PhotoWidget(url: thumbnails.url)),
+                  tag: thumbnails.url, child: PhotoWidget(url: thumbnails.url)),
             ),
             Text(
               thumbnails.title,
