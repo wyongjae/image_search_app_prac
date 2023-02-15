@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/presentation/photo_page/photo_search_page.dart';
+import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_page.dart';
+
+class Pages extends StatelessWidget {
+  const Pages({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SearchPage()),
+                  );
+                },
+                child: const Text('Search Page')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ThumbnailSearchPage()),
+                  );
+                },
+                child: const Text('Thumbnail Search Page')),
+          ],
+        ),
+      ),
+    );
+  }
+}

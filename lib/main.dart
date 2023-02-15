@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
-import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_page.dart';
+import 'package:image_search_app_prac/presentation/pages.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ThumbnailSearchPage(),
+        home: const Pages(),
       ),
     );
   }
 }
+
+
