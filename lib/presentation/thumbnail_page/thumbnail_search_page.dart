@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
@@ -7,14 +5,8 @@ import 'package:image_search_app_prac/presentation/components/photo_widget.dart'
 import 'package:image_search_app_prac/presentation/thumbnail_page/thunbnail_detail_screen.dart';
 import 'package:provider/provider.dart';
 
-class ThumbnailSearchPage extends StatefulWidget {
+class ThumbnailSearchPage extends StatelessWidget {
   const ThumbnailSearchPage({Key? key}) : super(key: key);
-
-  @override
-  State<ThumbnailSearchPage> createState() => _ThumbnailSearchPageState();
-}
-
-class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +28,7 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     onPressed: ()  {
-                      // 데이터 로딩 시작
                       loading.setLoading(true);
-
-                      ThumbnailJsonData().loadThumbnail();
-
-                      // 데이터 로딩 끝
-                      loading.setLoading(false);
                     },
                     icon: const Icon(Icons.search)),
                 border: OutlineInputBorder(
