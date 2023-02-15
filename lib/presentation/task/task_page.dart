@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/data/task_data/task_data.dart';
 import 'package:image_search_app_prac/data/task_data/task_json_data.dart';
 
 class TaskPage extends StatelessWidget {
@@ -13,21 +16,26 @@ class TaskPage extends StatelessWidget {
       body: FutureBuilder(
         future: TaskJsonData().loadTaskJsonData(),
         builder: (BuildContext context, snapshot) {
-          final taskData = snapshot.data;
+          final taskDatas = snapshot.data ?? [];
 
-          if (snapshot.data == null) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ListView.builder(
+              itemCount: taskDatas.length,
+              itemBuilder: (BuildContext context, int index) {
+                final taskData = taskDatas[index];
+
+                return Card(
+                  child: ListTile(
+                    title: Text(taskData.title),
+                  ),
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Text('${snapshot.error}');
+          } else {
             return const Center(
               child: CircularProgressIndicator(),
-            );
-          } else {
-            return ListView(
-              children: [
-                Card(
-                  child: ListTile(
-                    title: Text(taskData!.title),
-                  ),
-                ),
-              ],
             );
           }
         },

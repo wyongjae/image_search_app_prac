@@ -21,11 +21,11 @@ class TaskData {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['userId'] = userId;
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['body'] = body;
-    return _data;
+    final data = <String, dynamic>{};
+    data['userId'] = userId;
+    data['id'] = id;
+    data['title'] = title;
+    data['body'] = body;
+    return data;
   }
 }
