@@ -5,15 +5,8 @@ class Loading with ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
-  Future<void> delay() async {
-    _isLoading = true;
-    notifyListeners();
-
-    await Future.delayed(const Duration(seconds: 3));
-
-    print('loading');
-
-    _isLoading = false;
+  void setLoading(bool isLoading) {
+    _isLoading = isLoading;
     notifyListeners();
   }
-} // 3초간 로딩 화면 표시
+}

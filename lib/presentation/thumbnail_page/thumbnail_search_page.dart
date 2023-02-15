@@ -35,8 +35,14 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
             TextField(
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: () async {
-                      await loading.delay();
+                    onPressed: ()  {
+                      // 데이터 로딩 시작
+                      loading.setLoading(true);
+
+                      ThumbnailJsonData().loadThumbnail();
+
+                      // 데이터 로딩 끝
+                      loading.setLoading(false);
                     },
                     icon: const Icon(Icons.search)),
                 border: OutlineInputBorder(
