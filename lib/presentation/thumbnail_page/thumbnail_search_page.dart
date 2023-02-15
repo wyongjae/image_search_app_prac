@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_data.dart';
+import 'package:image_search_app_prac/data/thumbnail_data/thumbnail.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
@@ -15,7 +15,14 @@ class ThumbnailSearchPage extends StatefulWidget {
 
 class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
   final thumbnailJsonData = ThumbnailJsonData();
+
   List<Thumbnail> thumbnails = [];
+
+  @override
+  void initState() {
+    thumbnailJsonData.loadThumbnail();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

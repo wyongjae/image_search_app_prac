@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_data.dart';
+import 'package:image_search_app_prac/data/thumbnail_data/thumbnail.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
 class ThumbnailDetailScreen extends StatelessWidget {
@@ -15,7 +15,9 @@ class ThumbnailDetailScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Hero(
-                  tag: thumbnails.url, child: PhotoWidget(url: thumbnails.url)),
+                tag: thumbnails.url,
+                child: PhotoWidget(url: thumbnails.url),
+              ),
             ),
             Text(
               thumbnails.title,

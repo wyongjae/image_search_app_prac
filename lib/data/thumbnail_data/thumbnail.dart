@@ -20,18 +20,3 @@ class Thumbnail {
     );
   }
 }
-
-// class ThumbnailList {
-//   final List<Thumbnail> thumbnails;
-//
-//   ThumbnailList({
-//     required this.thumbnails,
-//   });
-//
-//   factory ThumbnailList.fromJson(List<dynamic> parsedJson) {
-//     List<Thumbnail> datas = [];
-//     datas = parsedJson.map((e) => Thumbnail.fromJson(e)).toList();
-//
-//     return ThumbnailList(thumbnails: datas);
-//   }
-// }
