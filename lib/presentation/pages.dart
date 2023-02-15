@@ -16,7 +16,9 @@ class Pages extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SearchPage()),
+                    MaterialPageRoute(
+                      builder: (context) => const SearchPage(),
+                    ),
                   );
                 },
                 child: const Text('Search Page')),
@@ -24,7 +26,9 @@ class Pages extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ThumbnailSearchPage()),
+                    MaterialPageRoute(
+                      builder: (context) => const ThumbnailSearchPage(),
+                    ),
                   );
                 },
                 child: const Text('Thumbnail Search Page')),
