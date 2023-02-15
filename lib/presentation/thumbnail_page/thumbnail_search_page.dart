@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/thumbnail_data/thumbnail.dart';
 import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
@@ -14,15 +15,6 @@ class ThumbnailSearchPage extends StatefulWidget {
 }
 
 class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
-  final thumbnailJsonData = ThumbnailJsonData();
-
-  List<Thumbnail> thumbnails = [];
-
-  @override
-  void initState() {
-    thumbnailJsonData.loadThumbnail();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +37,6 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
                 suffixIcon: IconButton(
                     onPressed: () async {
                       await loading.delay();
-                      thumbnails = await thumbnailJsonData.loadThumbnail();
                     },
                     icon: const Icon(Icons.search)),
                 border: OutlineInputBorder(
@@ -53,39 +44,48 @@ class _ThumbnailSearchPageState extends State<ThumbnailSearchPage> {
                 ),
               ),
             ),
-            loading.isLoading
-                ? const CircularProgressIndicator()
-                : Expanded(
-                    child: GridView.builder(
-                        padding: const EdgeInsets.only(top: 10),
-                        itemCount: thumbnails.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                        ),
-                        itemBuilder: (context, index) {
-                          final thumbnail = thumbnails[index];
-                          return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ThumbnailDetailScreen(
-                                      thumbnails: thumbnail,
+            FutureBuilder(
+                future: ThumbnailJsonData().loadThumbnail(),
+                builder: (context, snapshot) {
+                  final photos = snapshot.data ?? [];
+
+                  print('Future Thread');
+
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return Expanded(
+                      child: GridView.builder(
+                          padding: const EdgeInsets.only(top: 10),
+                          itemCount: photos.length,
+                          gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
+                          itemBuilder: (context, index) {
+                            final thumbnail = photos[index];
+                            return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ThumbnailDetailScreen(
+                                        thumbnail: thumbnail,
+                                      ),
                                     ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: thumbnail.url,
+                                  child: PhotoWidget(
+                                    url: thumbnail.thumbnailUrl,
                                   ),
-                                );
-                              },
-                              child: Hero(
-                                tag: thumbnail.url,
-                                child: PhotoWidget(
-                                  url: thumbnail.thumbnailUrl,
-                                ),
-                              ));
-                        }),
-                  )
+                                ));
+                          }),
+                    );
+                  }
+              return const CircularProgressIndicator();
+            }),
           ],
         ),
       ),

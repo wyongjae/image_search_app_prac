@@ -11,6 +11,8 @@ class Loading with ChangeNotifier {
 
     await Future.delayed(const Duration(seconds: 3));
 
+    print('loading');
+
     _isLoading = false;
     notifyListeners();
   }
