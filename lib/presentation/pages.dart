@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/presentation/photo_page/photo_search_page.dart';
+import 'package:image_search_app_prac/presentation/task/task_page.dart';
 import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_page.dart';
 
 class Pages extends StatelessWidget {
@@ -32,6 +33,16 @@ class Pages extends StatelessWidget {
                   );
                 },
                 child: const Text('Thumbnail Search Page')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  const TaskPage(),
+                    ),
+                  );
+                },
+                child: const Text('Task Page')),
           ],
         ),
       ),

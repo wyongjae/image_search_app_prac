@@ -6,16 +6,18 @@ class TaskData {
     required this.body,
   });
 
-  late final int userId;
-  late final int id;
-  late final String title;
-  late final String body;
+  final int userId;
+  final int id;
+  final String title;
+  final String body;
 
-  TaskData.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
-    id = json['id'];
-    title = json['title'];
-    body = json['body'];
+  factory TaskData.fromJson(Map<String, dynamic> json) {
+    return TaskData(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title'],
+      body: json['body'],
+    );
   }
 
   Map<String, dynamic> toJson() {
