@@ -13,30 +13,22 @@ class PostPage extends StatelessWidget {
       body: FutureBuilder(
         future: PostData().fetchPost(),
         builder: (context, snapshot) {
-          final post = snapshot.data;
+          final posts = snapshot.data ?? [];
 
-          if (snapshot.connectionState == ConnectionState.done &&
-              snapshot.hasData) {
-            return ListView(
-              children: [
-                Card(
-                  child: ListTile(
-                    title: Column(
-                      children: [
-                        Text(post!.title),
-                        Text(post.body),
-                        Text('${post.id}'),
-                        Text('${post.userId}'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
+          if (snapshot.connectionState == ConnectionState.done) {
+            return ListView.builder(
+                itemCount: posts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final post = posts[index];
+                  {
+                    return Card(
+                      child: ListTile(
+                        title: Text(post.title),
+                      ),
+                    );
+                  }
+                });
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );
