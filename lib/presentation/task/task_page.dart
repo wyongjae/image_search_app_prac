@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/task_data/task_data.dart';
 import 'package:image_search_app_prac/data/task_data/task_json_data.dart';
 
 class TaskPage extends StatelessWidget {
