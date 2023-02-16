@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
+import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
+import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
+import 'package:provider/provider.dart';
 
 class PhotoSearchPage extends StatefulWidget {
   const PhotoSearchPage({Key? key}) : super(key: key);
@@ -11,28 +13,13 @@ class PhotoSearchPage extends StatefulWidget {
 }
 
 class _PhotoSearchPageState extends State<PhotoSearchPage> {
-  bool isLoading = false;
-
+  final _controller = TextEditingController();
   final photoJsonData = PhotoJsonData();
-
   List<Photo> photos = [];
-
-  Future<void> delay() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    await Future.delayed(const Duration(seconds: 3));
-
-    photos = await photoJsonData.loadPhoto();
-
-    setState(() {
-      isLoading = false;
-    });
-  } // 3초간 로딩 화면 표시 후 데이터 호출
 
   @override
   Widget build(BuildContext context) {
+    final loading = Provider.of<Loading>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -46,10 +33,13 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     onPressed: () async {
-                      await delay();
+                      loading.setLoading(true);
+                      photos = await photoJsonData.loadPhoto(_controller.text);
+                      loading.setLoading(false);
                     },
                     icon: const Icon(Icons.search)),
                 border: OutlineInputBorder(
@@ -57,7 +47,7 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                 ),
               ),
             ),
-            isLoading
+            loading.isLoading
                 ? const CircularProgressIndicator()
                 : Expanded(
                     child: GridView.builder(
@@ -71,12 +61,12 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                         ),
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: () {
-                              print(photos[index].likes);
-                            },
+                              onTap: () {
+                                print(photos[index].likes);
+                              },
                               child: PhotoWidget(
-                            url: photos[index].previewURL,
-                          ));
+                                url: photos[index].previewURL,
+                              ));
                         }),
                   )
           ],
