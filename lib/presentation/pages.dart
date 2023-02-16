@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/presentation/photo_page/photo_search_page.dart';
+import 'package:image_search_app_prac/presentation/post_page/post_page.dart';
 import 'package:image_search_app_prac/presentation/task/task_page.dart';
 import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_page.dart';
 
@@ -43,6 +44,16 @@ class Pages extends StatelessWidget {
                   );
                 },
                 child: const Text('Task Page')),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  const PostPage(),
+                    ),
+                  );
+                },
+                child: const Text('Post Page')),
           ],
         ),
       ),
