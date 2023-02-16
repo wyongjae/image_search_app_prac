@@ -1,16 +1,17 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
+
+import 'package:http/http.dart' as http;
 import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
 
 class PhotoJsonData {
-  Future<String> loadPhotoAsset() async {
-    return await rootBundle.loadString('assets/photo.json');
-  }
-
   Future<List<Photo>> loadPhoto() async {
-    String jsonString = await loadPhotoAsset();
-    Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
+    const baseUrl = 'https://pixabay.com/api/';
+    const myKey = '32914845-e8ba3b79c1df4a533f0111dae';
 
+    final url = Uri.parse('$baseUrl?key=$myKey&q=apple&image_type=photo');
+    final response = await http.get(url);
+
+    Map<String, dynamic> jsonResponse = jsonDecode(response.body);
     PhotoData photoData = PhotoData.fromJson(jsonResponse);
     return photoData.hits;
   }

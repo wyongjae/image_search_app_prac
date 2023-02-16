@@ -19,11 +19,11 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SearchPage(),
+                      builder: (context) => const PhotoSearchPage(),
                     ),
                   );
                 },
-                child: const Text('Search Page')),
+                child: const Text('Photo Search Page')),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(

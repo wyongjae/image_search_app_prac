@@ -3,14 +3,14 @@ import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class PhotoSearchPage extends StatefulWidget {
+  const PhotoSearchPage({Key? key}) : super(key: key);
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  State<PhotoSearchPage> createState() => _PhotoSearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _PhotoSearchPageState extends State<PhotoSearchPage> {
   bool isLoading = false;
 
   final photoJsonData = PhotoJsonData();
