@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/presentation/photo_page/photo_search_page.dart';
 import 'package:image_search_app_prac/presentation/post_page/post_page.dart';
 import 'package:image_search_app_prac/presentation/task/task_page.dart';
@@ -19,7 +20,7 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PhotoSearchPage(),
+                      builder: (context) => PhotoSearchPage(data: PhotoJsonData()),
                     ),
                   );
                 },

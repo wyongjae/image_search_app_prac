@@ -6,7 +6,9 @@ import 'package:image_search_app_prac/presentation/components/photo_widget.dart'
 import 'package:provider/provider.dart';
 
 class PhotoSearchPage extends StatefulWidget {
-  const PhotoSearchPage({Key? key}) : super(key: key);
+  final PhotoJsonData data;
+
+  const PhotoSearchPage({Key? key, required this.data}) : super(key: key);
 
   @override
   State<PhotoSearchPage> createState() => _PhotoSearchPageState();
@@ -14,8 +16,6 @@ class PhotoSearchPage extends StatefulWidget {
 
 class _PhotoSearchPageState extends State<PhotoSearchPage> {
   final _controller = TextEditingController();
-  final photoJsonData = PhotoJsonData();
-  List<Photo> photos = [];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                 suffixIcon: IconButton(
                     onPressed: () async {
                       loading.setLoading(true);
-                      photos = await photoJsonData.loadPhoto(_controller.text);
+                      widget.data.fetch(_controller.text);
                       loading.setLoading(false);
                     },
                     icon: const Icon(Icons.search)),
@@ -47,15 +47,25 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                 ),
               ),
             ),
-            loading.isLoading
-                ? const CircularProgressIndicator()
-                : Expanded(
+            StreamBuilder<List<Photo>>(
+                initialData: const [],
+                stream: widget.data.photoStream,
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  final photos = snapshot.data!;
+
+                  return Expanded(
                     child: GridView.builder(
                         padding: const EdgeInsets.only(top: 10),
                         itemCount: photos.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: MediaQuery.of(context).orientation ==
-                                  Orientation.portrait ? 2 : 3,
+                                  Orientation.portrait
+                              ? 2
+                              : 3,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
                         ),
@@ -68,7 +78,8 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                                 url: photos[index].previewURL,
                               ));
                         }),
-                  )
+                  );
+                })
           ],
         ),
       ),
