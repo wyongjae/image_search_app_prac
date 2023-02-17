@@ -53,9 +53,9 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                     child: GridView.builder(
                         padding: const EdgeInsets.only(top: 10),
                         itemCount: photos.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: MediaQuery.of(context).orientation ==
+                                  Orientation.portrait ? 2 : 3,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
                         ),
