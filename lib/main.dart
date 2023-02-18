@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/presentation/components/loading.dart';
+import 'package:image_search_app_prac/presentation/app_providers.dart';
 import 'package:image_search_app_prac/presentation/pages.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppProviders(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,15 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => Loading())],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const Pages(),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: Colors.blue,
       ),
+      home: const Pages(),
     );
   }
 }
