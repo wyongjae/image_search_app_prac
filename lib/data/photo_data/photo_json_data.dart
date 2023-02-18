@@ -6,6 +6,7 @@ import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
 
 class PhotoJsonData {
   final _photoStreamController = StreamController<List<Photo>>();
+
   Stream<List<Photo>> get photoStream => _photoStreamController.stream;
 
   Future<List<Photo>> loadPhoto(String query) async {
@@ -22,7 +23,7 @@ class PhotoJsonData {
     return photoData.hits;
   }
 
-  Future<void> fetch(String query) async {
+  Future<void> fetchPhoto(String query) async {
     final result = await loadPhoto(query);
     _photoStreamController.add(result);
   }

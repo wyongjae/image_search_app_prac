@@ -20,6 +20,7 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
   @override
   Widget build(BuildContext context) {
     final loading = Provider.of<Loading>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -38,7 +39,7 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                 suffixIcon: IconButton(
                     onPressed: () async {
                       loading.setLoading(true);
-                      widget.data.fetch(_controller.text);
+                      widget.data.fetchPhoto(_controller.text);
                       loading.setLoading(false);
                     },
                     icon: const Icon(Icons.search)),
