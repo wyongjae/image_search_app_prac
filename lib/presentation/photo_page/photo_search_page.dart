@@ -32,7 +32,6 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,
-      theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
       home: Scaffold(
         appBar: AppBar(
@@ -43,6 +42,12 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
           actions: const [
             ChangeThemeButtonWidget(),
           ],
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -78,11 +83,13 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
                       child: GridView.builder(
                           padding: const EdgeInsets.only(top: 10),
                           itemCount: photos.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: MediaQuery.of(context).orientation ==
-                                    Orientation.portrait
-                                ? 2
-                                : 3,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount:
+                                MediaQuery.of(context).orientation ==
+                                        Orientation.portrait
+                                    ? 2
+                                    : 3,
                             crossAxisSpacing: 16,
                             mainAxisSpacing: 16,
                           ),
