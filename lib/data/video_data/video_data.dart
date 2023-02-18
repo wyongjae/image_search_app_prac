@@ -2,23 +2,23 @@ class VideoData {
   VideoData({
     required this.total,
     required this.totalHits,
-    required this.hits,
+    required this.videos,
   });
   late final int total;
   late final int totalHits;
-  late final List<Videos> hits;
+  late final List<Videos> videos;
 
   VideoData.fromJson(Map<String, dynamic> json){
     total = json['total'];
     totalHits = json['totalHits'];
-    hits = List.from(json['hits']).map((e)=>Videos.fromJson(e)).toList();
+    videos = List.from(json['hits']).map((e)=>Videos.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['total'] = total;
     _data['totalHits'] = totalHits;
-    _data['hits'] = hits.map((e)=>e.toJson()).toList();
+    _data['hits'] = videos.map((e)=>e.toJson()).toList();
     return _data;
   }
 }

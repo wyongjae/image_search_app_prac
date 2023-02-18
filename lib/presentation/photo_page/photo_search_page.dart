@@ -18,6 +18,12 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
   final _controller = TextEditingController();
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final loading = Provider.of<Loading>(context);
 

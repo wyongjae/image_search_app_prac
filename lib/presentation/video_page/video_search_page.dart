@@ -3,10 +3,12 @@ import 'package:image_search_app_prac/data/video_data/video_data.dart';
 import 'package:image_search_app_prac/data/video_data/video_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/video_widget.dart';
+import 'package:image_search_app_prac/presentation/video_page/video_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 class VideoSearchPage extends StatefulWidget {
   final VideoJsonData data;
+
   const VideoSearchPage({Key? key, required this.data}) : super(key: key);
 
   @override
@@ -15,6 +17,12 @@ class VideoSearchPage extends StatefulWidget {
 
 class _VideoSearchPageState extends State<VideoSearchPage> {
   final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,7 @@ class _VideoSearchPageState extends State<VideoSearchPage> {
                     return const CircularProgressIndicator();
                   }
 
-                  final videos = snapshot.data!;
+                  final videos = snapshot.data ?? [];
 
                   return Expanded(
                     child: GridView.builder(
@@ -60,16 +68,23 @@ class _VideoSearchPageState extends State<VideoSearchPage> {
                         itemCount: videos.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: MediaQuery.of(context).orientation ==
-                              Orientation.portrait
+                                  Orientation.portrait
                               ? 2
                               : 3,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
                         ),
                         itemBuilder: (context, index) {
+                          final video = videos[index];
                           return GestureDetector(
                               onTap: () {
-                                print(videos[index].likes);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          VideoDetailScreen(videos: video)),
+                                );
+                                print({videos[index].video.medium.url});
                               },
                               child: VideoWidget(
                                 pictureId: videos[index].pictureId,

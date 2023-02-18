@@ -20,7 +20,7 @@ class VideoJsonData {
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
     VideoData videoData = VideoData.fromJson(jsonResponse);
 
-    return videoData.hits;
+    return videoData.videos;
   }
 
   Future<void> fetchVideo(String query) async {
