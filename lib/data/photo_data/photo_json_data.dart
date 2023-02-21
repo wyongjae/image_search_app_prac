@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
 
 class PhotoJsonData {
+
   final _photoStreamController = StreamController<List<Photo>>();
 
   Stream<List<Photo>> get photoStream => _photoStreamController.stream;
 
   Future<List<Photo>> loadPhoto(String query) async {
-    await Future.delayed(const Duration(seconds: 2));
     const baseUrl = 'https://pixabay.com/api/';
     const myKey = '32914845-e8ba3b79c1df4a533f0111dae';
 

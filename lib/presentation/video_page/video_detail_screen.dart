@@ -3,11 +3,11 @@ import 'package:image_search_app_prac/data/video_data/video_data.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoDetailScreen extends StatefulWidget {
-  final Videos videos;
+  final Video video;
 
   const VideoDetailScreen({
     Key? key,
-    required this.videos,
+    required this.video,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class _VideoDetailScreenState extends State<VideoDetailScreen> {
 
   @override
   void initState() {
-    _controller = VideoPlayerController.network(widget.videos.video.medium.url)
+    _controller = VideoPlayerController.network(widget.video.videoSize.medium.url)
       ..initialize().then((_) {
         setState(() {});
       });

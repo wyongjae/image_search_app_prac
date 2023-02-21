@@ -26,7 +26,7 @@ class _VideoSearchPageState extends State<VideoSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loading = Provider.of<Loading>(context);
+    final loading = context.watch()<Loading>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +52,7 @@ class _VideoSearchPageState extends State<VideoSearchPage> {
                 ),
               ),
             ),
-            StreamBuilder<List<Videos>>(
+            StreamBuilder<List<Video>>(
                 initialData: const [],
                 stream: widget.data.videoStream,
                 builder: (context, snapshot) {
@@ -82,9 +82,9 @@ class _VideoSearchPageState extends State<VideoSearchPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          VideoDetailScreen(videos: video)),
+                                          VideoDetailScreen(video: video)),
                                 );
-                                print({videos[index].video.medium.url});
+                                print({videos[index].videoSize.medium.url});
                               },
                               child: VideoWidget(
                                 pictureId: videos[index].pictureId,

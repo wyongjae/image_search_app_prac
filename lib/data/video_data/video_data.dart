@@ -2,36 +2,36 @@ class VideoData {
   VideoData({
     required this.total,
     required this.totalHits,
-    required this.videos,
+    required this.video,
   });
   late final int total;
   late final int totalHits;
-  late final List<Videos> videos;
+  late final List<Video> video;
 
   VideoData.fromJson(Map<String, dynamic> json){
     total = json['total'];
     totalHits = json['totalHits'];
-    videos = List.from(json['hits']).map((e)=>Videos.fromJson(e)).toList();
+    video = List.from(json['hits']).map((e)=>Video.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['total'] = total;
     _data['totalHits'] = totalHits;
-    _data['hits'] = videos.map((e)=>e.toJson()).toList();
+    _data['hits'] = video.map((e)=>e.toJson()).toList();
     return _data;
   }
 }
 
-class Videos {
-  Videos({
+class Video {
+  Video({
     required this.id,
     required this.pageURL,
     required this.type,
     required this.tags,
     required this.duration,
     required this.pictureId,
-    required this.video,
+    required this.videoSize,
     required this.views,
     required this.downloads,
     required this.likes,
@@ -46,7 +46,7 @@ class Videos {
   late final String tags;
   late final int duration;
   late final String pictureId;
-  late final Video video;
+  late final VideoSize videoSize;
   late final int views;
   late final int downloads;
   late final int likes;
@@ -55,14 +55,14 @@ class Videos {
   late final String user;
   late final String userImageURL;
 
-  Videos.fromJson(Map<String, dynamic> json){
+  Video.fromJson(Map<String, dynamic> json){
     id = json['id'];
     pageURL = json['pageURL'];
     type = json['type'];
     tags = json['tags'];
     duration = json['duration'];
     pictureId = json['picture_id'];
-    video = Video.fromJson(json['videos']);
+    videoSize = VideoSize.fromJson(json['videos']);
     views = json['views'];
     downloads = json['downloads'];
     likes = json['likes'];
@@ -80,7 +80,7 @@ class Videos {
     _data['tags'] = tags;
     _data['duration'] = duration;
     _data['picture_id'] = pictureId;
-    _data['videos'] = video.toJson();
+    _data['videos'] = videoSize.toJson();
     _data['views'] = views;
     _data['downloads'] = downloads;
     _data['likes'] = likes;
@@ -92,8 +92,8 @@ class Videos {
   }
 }
 
-class Video {
-  Video({
+class VideoSize {
+  VideoSize({
     required this.large,
     required this.medium,
     required this.small,
@@ -104,7 +104,7 @@ class Video {
   late final Small small;
   late final Tiny tiny;
 
-  Video.fromJson(Map<String, dynamic> json){
+  VideoSize.fromJson(Map<String, dynamic> json){
     large = Large.fromJson(json['large']);
     medium = Medium.fromJson(json['medium']);
     small = Small.fromJson(json['small']);

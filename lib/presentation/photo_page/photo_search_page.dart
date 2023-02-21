@@ -27,8 +27,9 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final loading = Provider.of<Loading>(context);
+    final loading = context.watch()<Loading>(context);
+    final themeProvider = context.watch()<ThemeProvider>(context);
+
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,
