@@ -15,30 +15,7 @@ class PostScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Post Page'),
       ),
-      body: FutureBuilder(
-        future: viewModel.repository.fetch(),
-        builder: (context, snapshot) {
-          final posts = snapshot.data ?? [];
-
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ListView.builder(
-                itemCount: posts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final post = posts[index];
-                  {
-                    return Card(
-                      child: ListTile(
-                        title: Text(post.title),
-                      ),
-                    );
-                  }
-                });
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+      body: viewModel.buildFutureBuilder(),
     );
   }
 }
