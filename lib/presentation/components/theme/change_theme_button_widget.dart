@@ -7,12 +7,12 @@ class ChangeThemeButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = context.watch()<ThemeProvider>(context);
+    final themeProvider = context.watch<ThemeProvider>();
 
     return Switch.adaptive(
         value: themeProvider.isDarkMode,
         onChanged: (value) {
-          final provider = context.read()<ThemeProvider>(context);
+          final provider = context.read<ThemeProvider>();
           provider.toggleTheme(value);
         });
   }

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
+import 'package:image_search_app_prac/presentation/post/post_screen_view_model.dart';
 
 class PostScreen extends StatelessWidget {
-  const PostScreen({Key? key}) : super(key: key);
+  final PostScreenViewModel viewModel;
+
+  const PostScreen({
+    Key? key,
+    required this.viewModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +17,7 @@ class PostScreen extends StatelessWidget {
         title: const Text('Post Page'),
       ),
       body: FutureBuilder(
-        future: PostData().fetchPost(),
+        future: viewModel.data.fetchPost(),
         builder: (context, snapshot) {
           final posts = snapshot.data ?? [];
 

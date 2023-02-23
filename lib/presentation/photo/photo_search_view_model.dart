@@ -6,6 +6,6 @@ class PhotoSearchViewModel {
   PhotoSearchViewModel(this.repository);
 
   Future<void> fetchRepository(String query) async {
-    repository.fetchPhoto(query);
+    await repository.fetchPhoto(query);
   }
 }

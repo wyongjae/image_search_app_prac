@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/model/photo_data.dart';
+import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/change_theme_button_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
@@ -29,8 +30,8 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final loading = Provider.of(context);
-    final themeProvider = Provider.of(context);
+    final loading = context.watch<Loading>();
+    final themeProvider = context.watch<ThemeProvider>();
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,
@@ -62,8 +63,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                   suffixIcon: IconButton(
                       onPressed: () async {
                         loading.setLoading(true);
-                        widget.viewModel.repository
-                            .fetchPhoto(_controller.text);
+                        widget.viewModel.fetchRepository(_controller.text);
                         loading.setLoading(false);
                       },
                       icon: const Icon(Icons.search)),
