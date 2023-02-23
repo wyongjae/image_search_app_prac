@@ -61,8 +61,7 @@ class Pages extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => PostScreen(
-                        viewModel: PostScreenViewModel(PostData()),
-                      ),
+                          viewModel: PostScreenViewModel(PostData())),
                     ),
                   );
                 },

@@ -1,11 +1,11 @@
-import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
+import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
 
 class PostScreenViewModel {
-  PostData data;
+  PostDataRepository repository;
 
-  PostScreenViewModel(this.data);
+  PostScreenViewModel(this.repository);
 
-  Future<void> fetchData() async {
-    data.fetchPost();
+  Future<void> fetchRepository() async {
+    await repository.fetch();
   }
 }

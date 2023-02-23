@@ -63,7 +63,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                   suffixIcon: IconButton(
                       onPressed: () async {
                         loading.setLoading(true);
-                        widget.viewModel.fetchRepository(_controller.text);
+                        await widget.viewModel.fetchRepository(_controller.text);
                         loading.setLoading(false);
                       },
                       icon: const Icon(Icons.search)),

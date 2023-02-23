@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
 import 'package:image_search_app_prac/presentation/post/post_screen_view_model.dart';
 
 class PostScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class PostScreen extends StatelessWidget {
         title: const Text('Post Page'),
       ),
       body: FutureBuilder(
-        future: viewModel.data.fetchPost(),
+        future: viewModel.repository.fetch(),
         builder: (context, snapshot) {
           final posts = snapshot.data ?? [];
 

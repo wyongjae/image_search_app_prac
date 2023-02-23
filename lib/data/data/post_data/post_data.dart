@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
 import 'package:image_search_app_prac/model/post.dart';
 
-class PostData {
-  Future<List<Post>> fetchPost() async {
+class PostData implements PostDataRepository {
+  @override
+  Future<List<Post>> fetch() async {
     final uri = Uri.parse('https://jsonplaceholder.typicode.com/posts');
     final response = await http.get(uri);
 
