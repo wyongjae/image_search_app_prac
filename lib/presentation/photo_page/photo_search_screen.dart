@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
-import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
+import 'package:image_search_app_prac/data/data/photo_data/photo_data.dart';
+import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/change_theme_button_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
 import 'package:provider/provider.dart';
 
-class PhotoSearchPage extends StatefulWidget {
+class PhotoSearchScreen extends StatefulWidget {
   final PhotoJsonData data;
 
-  const PhotoSearchPage({Key? key, required this.data}) : super(key: key);
+  const PhotoSearchScreen({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<PhotoSearchPage> createState() => _PhotoSearchPageState();
+  State<PhotoSearchScreen> createState() => _PhotoSearchScreenState();
 }
 
-class _PhotoSearchPageState extends State<PhotoSearchPage> {
+class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
   final _controller = TextEditingController();
 
   @override
@@ -29,7 +29,6 @@ class _PhotoSearchPageState extends State<PhotoSearchPage> {
   Widget build(BuildContext context) {
     final loading = context.watch()<Loading>(context);
     final themeProvider = context.watch()<ThemeProvider>(context);
-
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,

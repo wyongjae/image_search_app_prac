@@ -4,21 +4,22 @@ class VideoData {
     required this.totalHits,
     required this.video,
   });
+
   late final int total;
   late final int totalHits;
   late final List<Video> video;
 
-  VideoData.fromJson(Map<String, dynamic> json){
+  VideoData.fromJson(Map<String, dynamic> json) {
     total = json['total'];
     totalHits = json['totalHits'];
-    video = List.from(json['hits']).map((e)=>Video.fromJson(e)).toList();
+    video = List.from(json['hits']).map((e) => Video.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['total'] = total;
     _data['totalHits'] = totalHits;
-    _data['hits'] = video.map((e)=>e.toJson()).toList();
+    _data['hits'] = video.map((e) => e.toJson()).toList();
     return _data;
   }
 }
@@ -40,6 +41,7 @@ class Video {
     required this.user,
     required this.userImageURL,
   });
+
   late final int id;
   late final String pageURL;
   late final String type;
@@ -55,7 +57,7 @@ class Video {
   late final String user;
   late final String userImageURL;
 
-  Video.fromJson(Map<String, dynamic> json){
+  Video.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     pageURL = json['pageURL'];
     type = json['type'];
@@ -99,12 +101,13 @@ class VideoSize {
     required this.small,
     required this.tiny,
   });
+
   late final Large large;
   late final Medium medium;
   late final Small small;
   late final Tiny tiny;
 
-  VideoSize.fromJson(Map<String, dynamic> json){
+  VideoSize.fromJson(Map<String, dynamic> json) {
     large = Large.fromJson(json['large']);
     medium = Medium.fromJson(json['medium']);
     small = Small.fromJson(json['small']);
@@ -128,12 +131,13 @@ class Large {
     required this.height,
     required this.size,
   });
+
   late final String url;
   late final int width;
   late final int height;
   late final int size;
 
-  Large.fromJson(Map<String, dynamic> json){
+  Large.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     width = json['width'];
     height = json['height'];
@@ -157,12 +161,13 @@ class Medium {
     required this.height,
     required this.size,
   });
+
   late final String url;
   late final int width;
   late final int height;
   late final int size;
 
-  Medium.fromJson(Map<String, dynamic> json){
+  Medium.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     width = json['width'];
     height = json['height'];
@@ -186,12 +191,13 @@ class Small {
     required this.height,
     required this.size,
   });
+
   late final String url;
   late final int width;
   late final int height;
   late final int size;
 
-  Small.fromJson(Map<String, dynamic> json){
+  Small.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     width = json['width'];
     height = json['height'];
@@ -215,12 +221,13 @@ class Tiny {
     required this.height,
     required this.size,
   });
+
   late final String url;
   late final int width;
   late final int height;
   late final int size;
 
-  Tiny.fromJson(Map<String, dynamic> json){
+  Tiny.fromJson(Map<String, dynamic> json) {
     url = json['url'];
     width = json['width'];
     height = json['height'];

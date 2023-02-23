@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/thumbnail_data/thumbnail.dart';
+import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
-class ThumbnailDetailScreen extends StatelessWidget {
+class ThumbnailSearchDetailScreen extends StatelessWidget {
   final Thumbnail thumbnail;
 
-  const ThumbnailDetailScreen({super.key, required this.thumbnail});
+  const ThumbnailSearchDetailScreen({super.key, required this.thumbnail});
 
   @override
   Widget build(BuildContext context) {

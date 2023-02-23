@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/http_data/post_data.dart';
+import 'package:image_search_app_prac/data/data/http_data/post_data.dart';
 
-class PostPage extends StatelessWidget {
-  const PostPage({Key? key}) : super(key: key);
+class PostScreen extends StatelessWidget {
+  const PostScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

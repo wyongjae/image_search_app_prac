@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/video_data/video_data.dart';
+import 'package:image_search_app_prac/data/data/video_data/video_data.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoDetailScreen extends StatefulWidget {
+class VideoSearchDetailScreen extends StatefulWidget {
   final Video video;
 
-  const VideoDetailScreen({
+  const VideoSearchDetailScreen({
     Key? key,
     required this.video,
   }) : super(key: key);
 
   @override
-  State<VideoDetailScreen> createState() => _VideoDetailScreenState();
+  State<VideoSearchDetailScreen> createState() => _VideoSearchDetailScreenState();
 }
 
-class _VideoDetailScreenState extends State<VideoDetailScreen> {
+class _VideoSearchDetailScreenState extends State<VideoSearchDetailScreen> {
   late VideoPlayerController _controller;
 
   @override
   void initState() {
-    _controller = VideoPlayerController.network(widget.video.videoSize.medium.url)
-      ..initialize().then((_) {
-        setState(() {});
-      });
+    _controller =
+        VideoPlayerController.network(widget.video.videoSize.medium.url)
+          ..initialize().then((_) {
+            setState(() {});
+          });
     super.initState();
   }
 
@@ -53,9 +54,8 @@ class _VideoDetailScreenState extends State<VideoDetailScreen> {
                 : _controller.play();
           });
         },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow
-        ),
+        child:
+            Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
       ),
     );
   }

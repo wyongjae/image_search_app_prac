@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/thumbnail_data/thumbnail_json_data.dart';
+import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
-import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_detail_screen.dart';
+import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_detail_screen.dart';
 import 'package:provider/provider.dart';
 
-class ThumbnailSearchPage extends StatelessWidget {
-  const ThumbnailSearchPage({Key? key}) : super(key: key);
+class ThumbnailSearchScreen extends StatelessWidget {
+  const ThumbnailSearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ThumbnailSearchPage extends StatelessWidget {
             TextField(
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                    onPressed: ()  {
+                    onPressed: () {
                       loading.setLoading(true);
                     },
                     icon: const Icon(Icons.search)),
@@ -49,7 +49,7 @@ class ThumbnailSearchPage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 10),
                           itemCount: photos.length,
                           gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 16,
                             mainAxisSpacing: 16,
@@ -61,7 +61,8 @@ class ThumbnailSearchPage extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ThumbnailDetailScreen(
+                                      builder: (context) =>
+                                          ThumbnailSearchDetailScreen(
                                         thumbnail: thumbnail,
                                       ),
                                     ),
@@ -76,8 +77,8 @@ class ThumbnailSearchPage extends StatelessWidget {
                           }),
                     );
                   }
-              return const CircularProgressIndicator();
-            }),
+                  return const CircularProgressIndicator();
+                }),
           ],
         ),
       ),

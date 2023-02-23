@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 class AppProviders extends StatelessWidget {
   final Widget child;
+
   const AppProviders({Key? key, required this.child}) : super(key: key);
 
   @override

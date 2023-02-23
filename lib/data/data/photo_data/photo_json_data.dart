@@ -2,10 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/data/photo_data/photo_data.dart';
+import 'package:image_search_app_prac/data/data/photo_data/photo_data.dart';
 
 class PhotoJsonData {
-
   final _photoStreamController = StreamController<List<Photo>>();
 
   Stream<List<Photo>> get photoStream => _photoStreamController.stream;

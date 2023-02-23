@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/photo_data/photo_json_data.dart';
-import 'package:image_search_app_prac/data/video_data/video_json_data.dart';
-import 'package:image_search_app_prac/presentation/photo_page/photo_search_page.dart';
-import 'package:image_search_app_prac/presentation/post_page/post_page.dart';
-import 'package:image_search_app_prac/presentation/task/task_page.dart';
-import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_page.dart';
-import 'package:image_search_app_prac/presentation/video_page/video_search_page.dart';
+import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
+import 'package:image_search_app_prac/data/data/video_data/video_json_data.dart';
+import 'package:image_search_app_prac/presentation/photo_page/photo_search_screen.dart';
+import 'package:image_search_app_prac/presentation/post_page/post_screen.dart';
+import 'package:image_search_app_prac/presentation/task/task_screen.dart';
+import 'package:image_search_app_prac/presentation/thumbnail_page/thumbnail_search_screen.dart';
+import 'package:image_search_app_prac/presentation/video_page/video_search_screen.dart';
 
 class Pages extends StatelessWidget {
   const Pages({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class Pages extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          PhotoSearchPage(data: PhotoJsonData()),
+                          PhotoSearchScreen(data: PhotoJsonData()),
                     ),
                   );
                 },
@@ -33,7 +33,7 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ThumbnailSearchPage(),
+                      builder: (context) => const ThumbnailSearchScreen(),
                     ),
                   );
                 },
@@ -43,7 +43,7 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const TaskPage(),
+                      builder: (context) => const TaskScreen(),
                     ),
                   );
                 },
@@ -53,7 +53,7 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PostPage(),
+                      builder: (context) => const PostScreen(),
                     ),
                   );
                 },
@@ -63,7 +63,8 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => VideoSearchPage(data: VideoJsonData()),
+                      builder: (context) =>
+                          VideoSearchScreen(data: VideoJsonData()),
                     ),
                   );
                 },
