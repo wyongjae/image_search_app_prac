@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/data/photo_data/photo_data.dart';
-import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
-import 'package:image_search_app_prac/presentation/components/loading.dart';
+import 'package:image_search_app_prac/model/photo_data.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/change_theme_button_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
+import 'package:image_search_app_prac/presentation/photo/photo_search_view_model.dart';
 import 'package:provider/provider.dart';
 
 class PhotoSearchScreen extends StatefulWidget {
-  final PhotoJsonData data;
+  final PhotoSearchViewModel viewModel;
 
-  const PhotoSearchScreen({Key? key, required this.data}) : super(key: key);
+  const PhotoSearchScreen({
+    Key? key,
+    required this.viewModel,
+  }) : super(key: key);
 
   @override
   State<PhotoSearchScreen> createState() => _PhotoSearchScreenState();
@@ -27,8 +29,8 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final loading = context.watch()<Loading>(context);
-    final themeProvider = context.watch()<ThemeProvider>(context);
+    final loading = Provider.of(context);
+    final themeProvider = Provider.of(context);
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,
@@ -60,7 +62,8 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                   suffixIcon: IconButton(
                       onPressed: () async {
                         loading.setLoading(true);
-                        widget.data.fetchPhoto(_controller.text);
+                        widget.viewModel.repository
+                            .fetchPhoto(_controller.text);
                         loading.setLoading(false);
                       },
                       icon: const Icon(Icons.search)),
@@ -71,7 +74,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
               ),
               StreamBuilder<List<Photo>>(
                   initialData: const [],
-                  stream: widget.data.photoStream,
+                  stream: widget.viewModel.repository.photoStream,
                   builder: (context, snapshot) {
                     if (snapshot.data == null) {
                       return const CircularProgressIndicator();
@@ -94,13 +97,9 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                             mainAxisSpacing: 16,
                           ),
                           itemBuilder: (context, index) {
-                            return GestureDetector(
-                                onTap: () {
-                                  print(photos[index].likes);
-                                },
-                                child: PhotoWidget(
-                                  url: photos[index].previewURL,
-                                ));
+                            return PhotoWidget(
+                              url: photos[index].previewURL,
+                            );
                           }),
                     );
                   })

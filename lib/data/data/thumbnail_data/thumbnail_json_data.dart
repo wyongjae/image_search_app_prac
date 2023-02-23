@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail.dart';
+import 'package:image_search_app_prac/model/thumbnail.dart';
 
 class ThumbnailJsonData {
   Future loadThumbnailAsset() async {

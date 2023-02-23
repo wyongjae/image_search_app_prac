@@ -2,14 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/data/data/photo_data/photo_data.dart';
+import 'package:image_search_app_prac/model/photo_data.dart';
 
 class PhotoJsonData {
-  final _photoStreamController = StreamController<List<Photo>>();
-
-  Stream<List<Photo>> get photoStream => _photoStreamController.stream;
-
-  Future<List<Photo>> loadPhoto(String query) async {
+  Future<List<Photo>> fetchApi(String query) async {
     const baseUrl = 'https://pixabay.com/api/';
     const myKey = '32914845-e8ba3b79c1df4a533f0111dae';
 
@@ -20,10 +16,5 @@ class PhotoJsonData {
     PhotoData photoData = PhotoData.fromJson(jsonResponse);
 
     return photoData.hits;
-  }
-
-  Future<void> fetchPhoto(String query) async {
-    final result = await loadPhoto(query);
-    _photoStreamController.add(result);
   }
 }
