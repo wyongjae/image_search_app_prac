@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/model/photo_data.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 import 'package:image_search_app_prac/presentation/components/theme/change_theme_button_widget.dart';
@@ -8,12 +7,7 @@ import 'package:image_search_app_prac/presentation/photo/photo_search_view_model
 import 'package:provider/provider.dart';
 
 class PhotoSearchScreen extends StatefulWidget {
-  final PhotoSearchViewModel viewModel;
-
-  const PhotoSearchScreen({
-    Key? key,
-    required this.viewModel,
-  }) : super(key: key);
+  const PhotoSearchScreen({Key? key}) : super(key: key);
 
   @override
   State<PhotoSearchScreen> createState() => _PhotoSearchScreenState();
@@ -32,6 +26,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
   Widget build(BuildContext context) {
     final loading = context.watch<Loading>();
     final themeProvider = context.watch<ThemeProvider>();
+    final viewModel = context.watch<PhotoSearchViewModel>();
 
     return MaterialApp(
       themeMode: themeProvider.themeMode,
@@ -63,7 +58,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                   suffixIcon: IconButton(
                       onPressed: () async {
                         loading.setLoading(true);
-                        await widget.viewModel.fetchRepository(_controller.text);
+                        await viewModel.fetchRepository(_controller.text);
                         loading.setLoading(false);
                       },
                       icon: const Icon(Icons.search)),
@@ -72,37 +67,24 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                   ),
                 ),
               ),
-              StreamBuilder<List<Photo>>(
-                  initialData: const [],
-                  stream: widget.viewModel.repository.photoStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null) {
-                      return const CircularProgressIndicator();
-                    }
-
-                    final photos = snapshot.data!;
-
-                    return Expanded(
-                      child: GridView.builder(
-                          padding: const EdgeInsets.only(top: 10),
-                          itemCount: photos.length,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount:
-                                MediaQuery.of(context).orientation ==
-                                        Orientation.portrait
-                                    ? 2
-                                    : 3,
-                            crossAxisSpacing: 16,
-                            mainAxisSpacing: 16,
-                          ),
-                          itemBuilder: (context, index) {
-                            return PhotoWidget(
-                              url: photos[index].previewURL,
-                            );
-                          }),
-                    );
-                  })
+              Expanded(
+                child: GridView.builder(
+                    padding: const EdgeInsets.only(top: 10),
+                    itemCount: viewModel.photos.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 2
+                          : 3,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                    ),
+                    itemBuilder: (context, index) {
+                      return PhotoWidget(
+                        url: viewModel.photos[index].previewURL,
+                      );
+                    }),
+              ),
             ],
           ),
         ),

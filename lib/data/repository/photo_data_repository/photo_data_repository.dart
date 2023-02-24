@@ -8,12 +8,7 @@ class PhotoDataRepository {
 
   PhotoDataRepository(this.data);
 
-  final _photoStreamController = StreamController<List<Photo>>();
-
-  Stream<List<Photo>> get photoStream => _photoStreamController.stream;
-
-  Future<void> fetchPhoto(String query) async {
-    final result = await data.fetchApi(query);
-    _photoStreamController.add(result);
+  Future<List<Photo>> getPhotos(String query) async {
+    return data.fetchApi(query);
   }
 }

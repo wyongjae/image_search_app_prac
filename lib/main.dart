@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
+import 'package:image_search_app_prac/data/repository/photo_data_repository/photo_data_repository.dart';
 import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
 import 'package:image_search_app_prac/presentation/pages.dart';
+import 'package:image_search_app_prac/presentation/photo/photo_search_view_model.dart';
 import 'package:image_search_app_prac/presentation/post/post_screen_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -21,8 +24,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => Loading()),
         ChangeNotifierProvider(
-          create: (_) => PostScreenViewModel(PostDataRepository(PostData())),
-        )
+            create: (_) => PostScreenViewModel(PostDataRepository(PostData()))),
+        ChangeNotifierProvider(
+            create: (_) =>
+                PhotoSearchViewModel(PhotoDataRepository(PhotoJsonData()))),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
