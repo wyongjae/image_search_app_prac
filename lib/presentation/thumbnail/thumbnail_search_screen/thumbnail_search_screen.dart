@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
-import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_detail_screen.dart';
-import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_view_model.dart';
+import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_detail_screen/thumbnail_search_detail_screen.dart';
+import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_screen/thumbnail_search_view_model.dart';
 import 'package:provider/provider.dart';
 
 class ThumbnailSearchScreen extends StatelessWidget {
