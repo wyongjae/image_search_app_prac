@@ -13,6 +13,13 @@ class PostScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Post Page'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                viewModel.fetch();
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
       body: _buildFutureBuilder(viewModel),
     );

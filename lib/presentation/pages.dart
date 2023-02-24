@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail_json_data.dart';
 import 'package:image_search_app_prac/data/data/video_data/video_json_data.dart';
 import 'package:image_search_app_prac/presentation/photo/photo_search_screen.dart';
 import 'package:image_search_app_prac/presentation/post/post_screen.dart';
 import 'package:image_search_app_prac/presentation/task/task_screen.dart';
 import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_screen.dart';
-import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_view_model.dart';
 import 'package:image_search_app_prac/presentation/video/video_search_screen.dart';
 
 class Pages extends StatelessWidget {
@@ -33,10 +31,7 @@ class Pages extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ThumbnailSearchScreen(
-                        viewModel:
-                            ThumbnailSearchViewModel(ThumbnailJsonData()),
-                      ),
+                      builder: (context) => const ThumbnailSearchScreen(),
                     ),
                   );
                 },
