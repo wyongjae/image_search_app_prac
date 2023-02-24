@@ -11,7 +11,8 @@ class VideoSearchDetailScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<VideoSearchDetailScreen> createState() => _VideoSearchDetailScreenState();
+  State<VideoSearchDetailScreen> createState() =>
+      _VideoSearchDetailScreenState();
 }
 
 class _VideoSearchDetailScreenState extends State<VideoSearchDetailScreen> {

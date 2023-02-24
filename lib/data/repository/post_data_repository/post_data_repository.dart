@@ -6,7 +6,7 @@ class PostDataRepository {
 
   PostDataRepository(this.postData);
 
-  Future<List<Post>> getPosts() {
-    return postData.fetch();
+  Future<List<Post>> getPosts() async {
+    return await postData.fetch();
   }
 }

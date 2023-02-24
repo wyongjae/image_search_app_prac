@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
+import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
 import 'package:image_search_app_prac/presentation/pages.dart';
+import 'package:image_search_app_prac/presentation/post/post_screen_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,6 +20,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => Loading()),
+        ChangeNotifierProvider(
+          create: (_) => PostScreenViewModel(PostDataRepository(PostData())),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
