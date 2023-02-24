@@ -1,5 +1,12 @@
+import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
 import 'package:image_search_app_prac/model/post.dart';
 
-abstract class PostDataRepository {
-  Future<List<Post>> fetch();
+class PostDataRepository {
+  PostData postData;
+
+  PostDataRepository(this.postData);
+
+  Future<List<Post>> getPosts() {
+    return postData.fetch();
+  }
 }
