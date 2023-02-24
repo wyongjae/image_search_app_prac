@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/thumbnail_data_repository/thumbnail_data_repository.dart';
 import 'package:image_search_app_prac/model/thumbnail.dart';
@@ -7,16 +9,20 @@ class ThumbnailSearchViewModel extends ChangeNotifier {
 
   ThumbnailSearchViewModel(this.repository);
 
-  bool isLoading = false;
+  bool _isLoading = false;
 
-  List<Thumbnail> thumbnails = [];
+  bool get isLoading => _isLoading;
+
+  List<Thumbnail> _thumbnails = [];
+
+  List<Thumbnail> get thumbnails => UnmodifiableListView(_thumbnails);
 
   Future<void> fetch() async {
-    isLoading = true;
+    _isLoading = true;
     notifyListeners();
 
-    thumbnails = await repository.loadThumbnail();
-    isLoading = false;
+    _thumbnails = await repository.loadThumbnail();
+    _isLoading = false;
     notifyListeners();
   }
 }

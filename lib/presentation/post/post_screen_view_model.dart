@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
 import 'package:image_search_app_prac/model/post.dart';
@@ -7,16 +9,20 @@ class PostScreenViewModel extends ChangeNotifier {
 
   PostScreenViewModel(this.repository);
 
-  bool isLoading = false;
+  bool _isLoading = false;
 
-  List<Post> posts = [];
+  bool get isLoading => _isLoading;
+
+  List<Post> _posts = [];
+
+  List<Post> get posts => UnmodifiableListView(_posts);
 
   Future<void> fetch() async {
-    isLoading = true;
+    _isLoading = true;
     notifyListeners();
 
-    posts = await repository.getPosts();
-    isLoading = false;
+    _posts = await repository.getPosts();
+    _isLoading = false;
     notifyListeners();
   }
 }
