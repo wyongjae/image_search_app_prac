@@ -12,11 +12,13 @@ import 'package:image_search_app_prac/presentation/components/theme/my_themes.da
 import 'package:image_search_app_prac/presentation/photo/photo_search_view_model.dart';
 import 'package:image_search_app_prac/presentation/post/post_screen_view_model.dart';
 import 'package:image_search_app_prac/presentation/task/task_screen_view_model.dart';
+import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_detail_screen/thumbnail_detail_screen_view_model.dart';
 import 'package:image_search_app_prac/presentation/thumbnail/thumbnail_search_screen/thumbnail_search_view_model.dart';
 import 'package:provider/provider.dart';
 
 class AppProviders extends StatelessWidget {
   final Widget child;
+
   const AppProviders({Key? key, required this.child}) : super(key: key);
 
   @override
@@ -35,6 +37,9 @@ class AppProviders extends StatelessWidget {
                 TaskScreenViewModel(TaskDataRepository(TaskJsonData()))),
         ChangeNotifierProvider(
             create: (_) => ThumbnailSearchViewModel(
+                ThumbnailDataRepository(ThumbnailJsonData()))),
+        ChangeNotifierProvider(
+            create: (_) => ThumbnailDetailScreenViewModel(
                 ThumbnailDataRepository(ThumbnailJsonData()))),
       ],
       child: child,

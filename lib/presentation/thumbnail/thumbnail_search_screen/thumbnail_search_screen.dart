@@ -35,35 +35,37 @@ class ThumbnailSearchScreen extends StatelessWidget {
                 ? const Center(child: CircularProgressIndicator())
                 : Expanded(
                     child: GridView.builder(
-                        padding: const EdgeInsets.only(top: 10),
-                        itemCount: viewModel.thumbnails.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                        ),
-                        itemBuilder: (context, index) {
-                          final thumbnail = viewModel.thumbnails[index];
-                          return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ThumbnailSearchDetailScreen(
-                                      thumbnail: thumbnail,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Hero(
-                                tag: thumbnail.url,
-                                child: PhotoWidget(
-                                  url: thumbnail.thumbnailUrl,
+                      padding: const EdgeInsets.only(top: 10),
+                      itemCount: viewModel.thumbnails.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                      ),
+                      itemBuilder: (context, index) {
+                        final thumbnail = viewModel.thumbnails[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ThumbnailSearchDetailScreen(
+                                  thumbnail: thumbnail,
                                 ),
-                              ));
-                        }),
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: thumbnail.url,
+                            child: PhotoWidget(
+                              url: thumbnail.thumbnailUrl,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
           ],
         ),
