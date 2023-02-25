@@ -4,11 +4,11 @@ import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart'
 import 'package:image_search_app_prac/model/photo_data.dart';
 
 class PhotoDataRepository {
-  PhotoJsonData data;
+  PhotoJsonData jsonData;
 
-  PhotoDataRepository(this.data);
+  PhotoDataRepository(this.jsonData);
 
   Future<List<Photo>> getPhotos(String query) async {
-    return data.fetchApi(query);
+    return jsonData.fetchApi(query);
   }
 }

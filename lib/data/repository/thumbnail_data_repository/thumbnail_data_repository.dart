@@ -2,11 +2,11 @@ import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail_json_da
 import 'package:image_search_app_prac/model/thumbnail.dart';
 
 class ThumbnailDataRepository {
-  ThumbnailJsonData data;
+  ThumbnailJsonData jsonData;
 
-  ThumbnailDataRepository(this.data);
+  ThumbnailDataRepository(this.jsonData);
 
   Future<List<Thumbnail>> loadThumbnail() async {
-    return data.loadThumbnail();
+    return jsonData.loadThumbnail();
   }
 }
