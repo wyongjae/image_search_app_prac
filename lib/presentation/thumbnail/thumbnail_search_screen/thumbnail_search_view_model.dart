@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/thumbnail_data_repository/thumbnail_data_repository.dart';
 import 'package:image_search_app_prac/model/thumbnail.dart';
 
-class ThumbnailSearchViewModel extends ChangeNotifier {
+class ThumbnailSearchViewModel with ChangeNotifier {
   ThumbnailDataRepository repository;
 
   ThumbnailSearchViewModel(this.repository);
