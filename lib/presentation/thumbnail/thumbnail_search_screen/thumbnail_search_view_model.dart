@@ -9,7 +9,7 @@ class ThumbnailSearchViewModel extends ChangeNotifier {
 
   ThumbnailSearchViewModel(this.repository);
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
@@ -17,12 +17,16 @@ class ThumbnailSearchViewModel extends ChangeNotifier {
 
   List<Thumbnail> get thumbnails => UnmodifiableListView(_thumbnails);
 
+  bool loading({bool? isLoading}) {
+    return isLoading ??= this.isLoading;
+  }
+
   Future<void> fetch() async {
-    _isLoading = true;
+    loading(isLoading: true);
     notifyListeners();
 
     _thumbnails = await repository.loadThumbnail();
-    _isLoading = false;
+    loading(isLoading: false);
     notifyListeners();
   }
 }

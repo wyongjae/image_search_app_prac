@@ -9,7 +9,7 @@ class TaskScreenViewModel extends ChangeNotifier {
 
   TaskScreenViewModel(this.repository);
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
@@ -17,12 +17,16 @@ class TaskScreenViewModel extends ChangeNotifier {
 
   List<TaskData> get taskData => UnmodifiableListView(_taskData);
 
+  bool loading({bool? isLoading}) {
+    return isLoading ??= this.isLoading;
+  }
+
   Future<void> fetch() async {
-    _isLoading = true;
+    loading(isLoading: true);
     notifyListeners();
 
     _taskData = await repository.getDatas();
-    _isLoading = false;
+    loading(isLoading: false);
     notifyListeners();
   }
 }

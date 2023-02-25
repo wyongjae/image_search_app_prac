@@ -9,7 +9,7 @@ class PostScreenViewModel extends ChangeNotifier {
 
   PostScreenViewModel(this.repository);
 
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   bool get isLoading => _isLoading;
 
@@ -17,12 +17,16 @@ class PostScreenViewModel extends ChangeNotifier {
 
   List<Post> get posts => UnmodifiableListView(_posts);
 
+  bool loading({bool? isLoading}) {
+    return isLoading ??= this.isLoading;
+  }
+
   Future<void> fetch() async {
-    _isLoading = true;
+    loading(isLoading: true);
     notifyListeners();
 
     _posts = await repository.getPosts();
-    _isLoading = false;
+    loading(isLoading: false);
     notifyListeners();
   }
 }
