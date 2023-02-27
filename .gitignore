@@ -43,5 +43,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/model/*.g
-/model/*.freezed
+*.g.dart
+*.freezed.dart
