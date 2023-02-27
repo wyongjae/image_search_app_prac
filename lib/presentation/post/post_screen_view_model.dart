@@ -7,8 +7,6 @@ import 'package:image_search_app_prac/model/post.dart';
 class PostScreenViewModel with ChangeNotifier {
   PostDataRepository repository;
 
-  PostScreenViewModel(this.repository);
-
   final bool _isLoading = false;
 
   bool get isLoading => _isLoading;
@@ -16,6 +14,8 @@ class PostScreenViewModel with ChangeNotifier {
   List<Post> _posts = [];
 
   List<Post> get posts => UnmodifiableListView(_posts);
+
+  PostScreenViewModel(this.repository);
 
   bool loading({bool? isLoading}) {
     return isLoading ??= this.isLoading;

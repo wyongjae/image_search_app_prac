@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/model/photo_data.dart';
+import 'package:image_search_app_prac/model/photo/photo.dart';
 
 class PhotoJsonData {
   Future<List<Photo>> fetchApi(String query) async {
@@ -13,8 +13,8 @@ class PhotoJsonData {
     final response = await http.get(url);
 
     Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-    PhotoData photoData = PhotoData.fromJson(jsonResponse);
+    Iterable hits= jsonResponse['hits'];
 
-    return photoData.hits;
+    return hits.map((e) => Photo.fromJson(e)).toList();
   }
 }

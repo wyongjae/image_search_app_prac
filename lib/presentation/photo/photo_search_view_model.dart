@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/photo_data_repository/photo_data_repository.dart';
-import 'package:image_search_app_prac/model/photo_data.dart';
+import 'package:image_search_app_prac/model/photo/photo.dart';
 
 class PhotoSearchViewModel with ChangeNotifier {
   PhotoDataRepository repository;
