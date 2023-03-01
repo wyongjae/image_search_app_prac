@@ -26,13 +26,13 @@ class PostScreen extends StatelessWidget {
   }
 
   Widget _buildFutureBuilder(PostScreenViewModel viewModel) {
-    if (viewModel.isLoading) {
+    if (viewModel.state.isLoading) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
 
-    final posts = viewModel.posts;
+    final posts = viewModel.state.posts;
 
     return ListView.builder(
       itemCount: posts.length,

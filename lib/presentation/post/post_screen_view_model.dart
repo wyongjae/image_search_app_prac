@@ -1,32 +1,22 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
-import 'package:image_search_app_prac/domain/model/post.dart';
+import 'package:image_search_app_prac/presentation/post/post_screen_state.dart';
 
 class PostScreenViewModel with ChangeNotifier {
   PostDataRepository repository;
 
-  final bool _isLoading = false;
+  var _state = PostScreenState();
 
-  bool get isLoading => _isLoading;
-
-  List<Post> _posts = [];
-
-  List<Post> get posts => UnmodifiableListView(_posts);
+  PostScreenState get state => _state;
 
   PostScreenViewModel(this.repository);
 
-  bool loading({bool? isLoading}) {
-    return isLoading ??= this.isLoading;
-  }
-
   Future<void> fetch() async {
-    loading(isLoading: true);
+    _state = state.copyWith(isLoading: true);
     notifyListeners();
 
-    _posts = await repository.getPosts();
-    loading(isLoading: false);
+    final posts = await repository.getPosts();
+    _state = state.copyWith(isLoading: false, posts: posts);
     notifyListeners();
   }
 }

@@ -5,14 +5,15 @@ import 'package:image_search_app_prac/presentation/photo/photo_search_state.dart
 class PhotoSearchViewModel with ChangeNotifier {
   PhotoDataRepository repository;
 
-  PhotoSearchViewModel(this.repository);
-
   var _state = PhotoSearchState();
 
   PhotoSearchState get state => _state;
 
+  PhotoSearchViewModel(this.repository);
+
   Future<void> fetchRepository(String query) async {
     _state = state.copyWith(isLoading: true);
+    notifyListeners();
 
     final photos = await repository.getPhotos(query);
 
