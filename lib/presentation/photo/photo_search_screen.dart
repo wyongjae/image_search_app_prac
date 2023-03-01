@@ -70,7 +70,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
               Expanded(
                 child: GridView.builder(
                     padding: const EdgeInsets.only(top: 10),
-                    itemCount: viewModel.photos.length,
+                    itemCount: viewModel.state.photos.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: MediaQuery.of(context).orientation ==
                               Orientation.portrait
@@ -81,7 +81,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                     ),
                     itemBuilder: (context, index) {
                       return PhotoWidget(
-                        url: viewModel.photos[index].previewURL,
+                        url: viewModel.state.photos[index].previewURL,
                       );
                     }),
               ),

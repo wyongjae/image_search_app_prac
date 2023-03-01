@@ -1,20 +1,26 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/photo_data_repository/photo_data_repository.dart';
-import 'package:image_search_app_prac/model/photo/photo.dart';
+import 'package:image_search_app_prac/presentation/photo/photo_search_state.dart';
 
 class PhotoSearchViewModel with ChangeNotifier {
   PhotoDataRepository repository;
 
   PhotoSearchViewModel(this.repository);
 
-  List<Photo> _photos = [];
+  var _state = PhotoSearchState();
 
-  List<Photo> get photos => UnmodifiableListView(_photos);
+  PhotoSearchState get state => _state;
 
   Future<void> fetchRepository(String query) async {
-    _photos = await repository.getPhotos(query);
+    _state = state.copyWith(isLoading: true);
+
+    final photos = await repository.getPhotos(query);
+
+    _state = state.copyWith(
+      isLoading: false,
+      photos: photos,
+    );
+
     notifyListeners();
   }
 }

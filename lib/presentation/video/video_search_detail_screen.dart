@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/model/video_data.dart';
+import 'package:image_search_app_prac/domain/model/video_data.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoSearchDetailScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_search_app_prac/model/thumbnail.dart';
+import 'package:image_search_app_prac/domain/model/thumbnail.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
 
 class ThumbnailSearchDetailScreen extends StatelessWidget {

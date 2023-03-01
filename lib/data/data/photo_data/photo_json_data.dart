@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/model/photo/photo.dart';
+import 'package:image_search_app_prac/domain/model/photo/photo.dart';
 
 class PhotoJsonData {
   Future<List<Photo>> fetchApi(String query) async {

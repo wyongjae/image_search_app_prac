@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/model/video_data.dart';
+import 'package:image_search_app_prac/domain/model/video_data.dart';
 
 class VideoJsonData {
   Future<List<Video>> loadVideo(String query) async {

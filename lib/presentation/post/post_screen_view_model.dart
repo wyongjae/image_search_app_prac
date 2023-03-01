@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/post_data_repository/post_data_repository.dart';
-import 'package:image_search_app_prac/model/post.dart';
+import 'package:image_search_app_prac/domain/model/post.dart';
 
 class PostScreenViewModel with ChangeNotifier {
   PostDataRepository repository;

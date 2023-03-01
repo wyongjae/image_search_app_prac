@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:image_search_app_prac/model/post.dart';
+import 'package:image_search_app_prac/domain/model/post.dart';
 
 class PostData {
   Future<List<Post>> fetch() async {

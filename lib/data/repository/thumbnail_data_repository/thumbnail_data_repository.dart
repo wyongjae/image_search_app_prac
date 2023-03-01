@@ -1,5 +1,5 @@
 import 'package:image_search_app_prac/data/data/thumbnail_data/thumbnail_json_data.dart';
-import 'package:image_search_app_prac/model/thumbnail.dart';
+import 'package:image_search_app_prac/domain/model/thumbnail.dart';
 
 class ThumbnailDataRepository {
   ThumbnailJsonData jsonData;

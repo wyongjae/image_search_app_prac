@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:image_search_app_prac/model/task_data.dart';
+import 'package:image_search_app_prac/domain/model/task_data.dart';
 
 
 class TaskJsonData {
