@@ -11,7 +11,7 @@ class PhotoSearchViewModel with ChangeNotifier {
 
   PhotoSearchViewModel(this.repository);
 
-  Future<void> fetchRepository(String query) async {
+  Future<void> fetch(String query) async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
