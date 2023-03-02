@@ -11,7 +11,10 @@ void main() {
 
     await viewModel.fetch('apple');
 
+    final result = fakeJson.map((e) => Photo.fromJson(e)).toList();
+
     expect(viewModel.state.photos.first.id, 634572);
+    expect(viewModel.state.copyWith(photos: result).photos, result);
   });
 }
 
