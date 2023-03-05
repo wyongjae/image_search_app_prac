@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
 import 'package:image_search_app_prac/data/data/post_data/post_data.dart';
 import 'package:image_search_app_prac/data/data/task_data/task_json_data.dart';
@@ -34,7 +35,7 @@ class AppProviders extends StatelessWidget {
             create: (_) => PostScreenViewModel(PostDataRepository(PostData()))),
         ChangeNotifierProvider(
             create: (_) =>
-                PhotoSearchViewModel(PhotoDataRepository(PhotoJsonData()))),
+                PhotoSearchViewModel(PhotoDataRepository(PhotoJsonData(Client())))),
         ChangeNotifierProvider(
             create: (_) =>
                 TaskScreenViewModel(TaskDataRepository(TaskJsonData()))),
