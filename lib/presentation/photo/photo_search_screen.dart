@@ -73,12 +73,17 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
             children: [
               TextField(
                 controller: _controller,
+                onSubmitted: (text) {
+                  if (text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('검색어를 입력해주세요')),
+                    );
+                  }
+                },
                 decoration: InputDecoration(
                   suffixIcon: IconButton(
                       onPressed: () async {
-                        loading.setLoading(true);
                         await viewModel.fetch(_controller.text);
-                        loading.setLoading(false);
                       },
                       icon: const Icon(Icons.search)),
                   border: OutlineInputBorder(
