@@ -39,4 +39,11 @@ class PhotoSearchViewModel with ChangeNotifier {
       },
     );
   }
+
+  void isEmptyError(String text) {
+    if (text.isEmpty) {
+      _eventStreamController
+          .add(const PhotoUiEvent.showSnackBar('검색어를 입력해주세요'));
+    }
+  }
 }

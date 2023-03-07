@@ -69,11 +69,7 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
                 TextField(
                   controller: _controller,
                   onSubmitted: (text) {
-                    if (text.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('검색어를 입력해주세요')),
-                      );
-                    }
+                    viewModel.isEmptyError(text);
                   },
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
