@@ -2,14 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:image_search_app_prac/data/data/photo_data/photo_json_data.dart';
+import 'package:image_search_app_prac/domain/model/photo/photo.dart';
+import 'package:image_search_app_prac/util/result.dart';
 
 void main() {
   test('photo json data 를 가져온다', () async {
     final jsonData = PhotoJsonData(mockClient);
 
-    final result = await jsonData.fetchApi('apple');
-
-    expect(result.first.id, 634572);
+    final Result<List<Photo>> result = await jsonData.fetchApi('apple');
+    expect((result as Success<List<Photo>>).data.first.id, 634572);
   });
 }
 
