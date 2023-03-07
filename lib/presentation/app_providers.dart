@@ -10,6 +10,7 @@ import 'package:image_search_app_prac/data/repository/post_data_repository/post_
 import 'package:image_search_app_prac/data/repository/task_data_repository/task_data_repository.dart';
 import 'package:image_search_app_prac/data/repository/thumbnail_data_repository/thumbnail_data_repository.dart';
 import 'package:image_search_app_prac/data/repository/video_data_repository/video_data_repository.dart';
+import 'package:image_search_app_prac/domain/use_case/get_photos_use_case.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/theme/my_themes.dart';
 import 'package:image_search_app_prac/presentation/photo/photo_search_view_model.dart';
@@ -34,8 +35,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => PostScreenViewModel(PostDataRepository(PostData()))),
         ChangeNotifierProvider(
-            create: (_) => PhotoSearchViewModel(
-                PhotoDataRepository(PhotoJsonData(Client())))),
+            create: (_) => PhotoSearchViewModel(GetPhotosUseCase(
+                PhotoDataRepository(PhotoJsonData(Client()))))),
         ChangeNotifierProvider(
             create: (_) =>
                 TaskScreenViewModel(TaskDataRepository(TaskJsonData()))),
