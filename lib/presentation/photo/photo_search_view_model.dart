@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/data/repository/photo_data_repository/photo_data_repository.dart';
 import 'package:image_search_app_prac/domain/model/photo/photo.dart';
 import 'package:image_search_app_prac/presentation/photo/photo_search_state.dart';
+import 'package:image_search_app_prac/presentation/photo/photo_ui_event.dart';
 import 'package:image_search_app_prac/util/result.dart';
 
 class PhotoSearchViewModel with ChangeNotifier {
@@ -10,6 +13,10 @@ class PhotoSearchViewModel with ChangeNotifier {
   var _state = PhotoSearchState();
 
   PhotoSearchState get state => _state;
+
+  final _eventStreamController = StreamController<PhotoUiEvent>();
+
+  Stream<PhotoUiEvent> get eventStream => _eventStreamController.stream;
 
   PhotoSearchViewModel(this.repository);
 
@@ -28,6 +35,7 @@ class PhotoSearchViewModel with ChangeNotifier {
         notifyListeners();
       },
       error: (message) {
+        _eventStreamController.add(PhotoUiEvent.showSnackBar(message));
         print(message);
       },
     );

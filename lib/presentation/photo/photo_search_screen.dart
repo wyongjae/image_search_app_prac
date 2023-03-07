@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:image_search_app_prac/presentation/components/loading.dart';
 import 'package:image_search_app_prac/presentation/components/photo_widget.dart';
@@ -15,11 +17,28 @@ class PhotoSearchScreen extends StatefulWidget {
 
 class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
   final _controller = TextEditingController();
+  StreamSubscription? _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<PhotoSearchViewModel>();
+      _subscription = viewModel.eventStream.listen((event) {
+        event.when(showSnackBar: (message) {
+          final snackBar = SnackBar(content: Text(message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        });
+      });
+    });
+  }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
+    _subscription?.cancel();
+    _controller.dispose();
   }
 
   @override
