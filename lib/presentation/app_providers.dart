@@ -34,8 +34,8 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => PostScreenViewModel(PostDataRepository(PostData()))),
         ChangeNotifierProvider(
-            create: (_) =>
-                PhotoSearchViewModel(PhotoDataRepository(PhotoJsonData(Client())))),
+            create: (_) => PhotoSearchViewModel(
+                PhotoDataRepository(PhotoJsonData(Client())))),
         ChangeNotifierProvider(
             create: (_) =>
                 TaskScreenViewModel(TaskDataRepository(TaskJsonData()))),

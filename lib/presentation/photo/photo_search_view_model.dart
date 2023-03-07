@@ -36,7 +36,6 @@ class PhotoSearchViewModel with ChangeNotifier {
       },
       error: (message) {
         _eventStreamController.add(PhotoUiEvent.showSnackBar(message));
-        print(message);
       },
     );
   }
