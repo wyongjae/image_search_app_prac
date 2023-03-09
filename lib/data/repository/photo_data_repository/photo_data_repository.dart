@@ -10,6 +10,6 @@ class PhotoDataRepository {
   PhotoDataRepository(this.jsonData);
 
   Future<Result<List<Photo>>> getPhotos(String query) async {
-    return jsonData.fetchApi(query);
+    return await jsonData.fetchApi(query);
   }
 }
