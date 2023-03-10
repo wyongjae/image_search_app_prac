@@ -68,8 +68,8 @@ class _PhotoSearchScreenState extends State<PhotoSearchScreen> {
               children: [
                 TextField(
                   controller: _controller,
-                  onSubmitted: (text) {
-                    viewModel.isEmptyError(text);
+                  onSubmitted: (query) {
+                    viewModel.isEmptyError(query);
                   },
                   decoration: InputDecoration(
                     suffixIcon: IconButton(

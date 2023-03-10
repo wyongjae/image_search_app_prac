@@ -14,13 +14,22 @@ class PhotoSearchViewModel with ChangeNotifier {
 
   PhotoSearchState get state => _state;
 
-  final _eventStreamController = StreamController<PhotoUiEvent>();
+  final _eventStreamController = StreamController<PhotoUiEvent>.broadcast();
 
   Stream<PhotoUiEvent> get eventStream => _eventStreamController.stream;
 
   PhotoSearchViewModel(this.getPhotosUseCase);
 
   Future<void> fetch(String query) async {
+    if (query.isEmpty) {
+      isEmptyError(query);
+      _state = state.copyWith(
+        photos: [],
+      );
+      notifyListeners();
+      return;
+    }
+
     _state = state.copyWith(isLoading: true);
     notifyListeners();
 
@@ -40,8 +49,8 @@ class PhotoSearchViewModel with ChangeNotifier {
     );
   }
 
-  void isEmptyError(String text) {
-    if (text.isEmpty) {
+  void isEmptyError(String query) {
+    if (query.isEmpty) {
       _eventStreamController
           .add(const PhotoUiEvent.showSnackBar('검색어를 입력해주세요'));
     }
